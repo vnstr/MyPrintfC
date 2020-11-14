@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_valid_spec_lst.c                             :+:      :+:    :+:   */
+/*   printf_arg_lst.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdrive <gdrive@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/13 13:01:19 by gdrive            #+#    #+#             */
-/*   Updated: 2020/11/14 23:27:39 by gdrive           ###   ########.fr       */
+/*   Created: 2020/11/14 23:22:37 by gdrive            #+#    #+#             */
+/*   Updated: 2020/11/14 23:46:42 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "ft_printf.h"
 
-int			is_spec(char c)
+void	print_arg_lst(t_spec_info *begin_lst)
 {
-	return (c == 'c' || c == 's' || c == 'p' || c == 'd'
-	|| c == 'i' || c == 'u' || c == 'x' || c == 'X' || c == '%');
-}
-
-int			check_valid_spec_lst(t_spec_info *begin_lst)
-{
-	t_spec_info	*tmp;
-
-	if ((tmp = begin_lst) == NULL)
-		return (-1);
-	while (tmp != NULL)
+	while (begin_lst)
 	{
-		if ((is_spec(tmp->spec)) == 0)
-			return (-1);
-		tmp = tmp->next;
+		printf("%s", begin_lst->arg);
+		begin_lst = begin_lst->next;
+		printf("%s", begin_lst->arg);
+		begin_lst = begin_lst->next;
 	}
-	return (0);
+	return ;
 }

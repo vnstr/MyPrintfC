@@ -6,7 +6,7 @@
 /*   By: gdrive <gdrive@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 14:36:33 by gdrive            #+#    #+#             */
-/*   Updated: 2020/11/14 20:01:37 by gdrive           ###   ########.fr       */
+/*   Updated: 2020/11/15 00:31:29 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,9 @@
 
 int	main(int argc, char **argv)
 {
-	int	res;
-
-	//printf("%0010d\n", "200000000");
-
-	res = ft_printf("|%050.2s|\n", "1234567");
-
-
-	//ft_printf("|%***c|", -1, -2, 3, 'A');
-
-
-
-
+	// test_spec_c();
+	// ft_printf("%*c%*c", 10, 'Z', 5, 'A');
+	// ft_printf("%010c", 'Z');
+	// ft_printf("|%c%c|\n", 'Z', 'A');
 	return (0);
 }

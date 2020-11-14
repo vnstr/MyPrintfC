@@ -6,7 +6,7 @@
 /*   By: gdrive <gdrive@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 17:35:50 by gdrive            #+#    #+#             */
-/*   Updated: 2020/11/14 18:07:53 by gdrive           ###   ########.fr       */
+/*   Updated: 2020/11/15 00:01:57 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	print_spec_lst(t_spec_info *begin_lst)
 		printf("arg_len: %d\n", begin_lst->arg_len);
 		printf("all_len: %d\n", begin_lst->all_len);
 		printf("-----------------------------------\n");
-		begin_lst = (*begin_lst).next;
+		begin_lst = begin_lst->next;
 		lst_count++;
 	}
 	printf("\n~~~~~~~~~~~~~~~END~~~~~~~~~~~~~~~~~\n");

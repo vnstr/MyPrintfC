@@ -6,7 +6,7 @@
 /*   By: gdrive <gdrive@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 17:30:12 by gdrive            #+#    #+#             */
-/*   Updated: 2020/11/14 18:11:14 by gdrive           ###   ########.fr       */
+/*   Updated: 2020/11/15 00:26:17 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void		apply_arg_c(t_spec_info *lst, va_list factor)
 	else if (lst->flags.zero == '0')
 	{
 		i = 0;
-		while (i < lst->arg_len - 1)
+		while (i < lst->all_len - 1)
 			lst->arg[i++] = '0';
 	}
 	lst->arg[lst->all_len - 1] = va_arg(factor, int);

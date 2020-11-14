@@ -28,6 +28,8 @@ TAKEARGS = $(TAKESPECLSTDIR)take_args/
 SRC = $(SRCDIR)main.c\
 	  $(SRCDIR)ft_printf.c\
 	  $(FORTEST)print_spec_lst.c\
+	  $(FORTEST)test_spec_c.c\
+	  $(FORTEST)printf_arg_lst.c\
 	  $(FTSTDLIBDIR)ft_atoi.c\
 	  $(FTSTRINGDIR)ft_memcmp.c\
 	  $(FTSTRINGDIR)ft_strlen.c\
