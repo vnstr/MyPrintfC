@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_spec_c.c                                      :+:      :+:    :+:   */
+/*   basic_test_arg_c.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdrive <gdrive@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/14 22:52:04 by gdrive            #+#    #+#             */
-/*   Updated: 2020/11/14 23:49:06 by gdrive           ###   ########.fr       */
+/*   Updated: 2020/11/15 00:52:15 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,9 +216,9 @@ static void		basic_test_one_arg(void)
 	return ;
 }
 
-int				test_spec_c(void)
+void				basic_test_arg_c(void)
 {
 	// basic_test_one_arg();
 	basic_test_two_arg();
-	return (0);
+	return ;
 }

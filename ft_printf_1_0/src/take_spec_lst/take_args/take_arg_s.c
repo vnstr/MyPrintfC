@@ -6,7 +6,7 @@
 /*   By: gdrive <gdrive@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/14 12:17:28 by gdrive            #+#    #+#             */
-/*   Updated: 2020/11/14 20:01:49 by gdrive           ###   ########.fr       */
+/*   Updated: 2020/11/15 01:08:33 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int		apply_precision_s(t_spec_info *lst)
 	int		i;
 	char	*save;
 
-	if (lst->flags.precision < 0)
+	if (lst->flags.precision < 0 || lst->flags.precision > lst->arg_len)
 		return (0);
 	save = lst->arg;
 	lst->arg_len = lst->flags.precision;

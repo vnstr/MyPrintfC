@@ -6,7 +6,7 @@
 /*   By: gdrive <gdrive@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 14:40:00 by gdrive            #+#    #+#             */
-/*   Updated: 2020/11/15 00:27:54 by gdrive           ###   ########.fr       */
+/*   Updated: 2020/11/15 00:52:00 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,9 @@ int			take_arg_s(t_spec_info *lst, va_list factor);
  */
 
 void		print_spec_lst(t_spec_info *begin);
-int			test_spec_c(void);
 void		print_arg_lst(t_spec_info *begin_lst);
+
+void		basic_test_arg_c(void);
+void		basic_test_arg_s(void);
 
 #endif
