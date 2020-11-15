@@ -6,7 +6,7 @@
 /*   By: gdrive <gdrive@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/14 12:17:28 by gdrive            #+#    #+#             */
-/*   Updated: 2020/11/15 01:08:33 by gdrive           ###   ########.fr       */
+/*   Updated: 2020/11/15 19:19:29 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include "ft_printf.h"
 
-static int		apply_width_s(t_spec_info *lst)
+int		apply_width_s(t_spec_info *lst)
 {
 	char	*save;
 	int		i;
@@ -25,7 +25,10 @@ static int		apply_width_s(t_spec_info *lst)
 	save = lst->arg;
 	lst->all_len = lst->flags.width;
 	if ((lst->arg = (char*)malloc(sizeof(char) * (lst->all_len + 1))) == NULL)
+	{
+		free(save);
 		return (-1);
+	}
 	lst->arg[lst->all_len] = '\0';
 	i = lst->all_len;
 	j = lst->arg_len;
@@ -33,10 +36,11 @@ static int		apply_width_s(t_spec_info *lst)
 		lst->arg[i--] = save[j--]; 
 	while (i >= 0)
 		lst->arg[i--] = ' '; 
+	free(save);
 	return (0);
 }
 
-static int		apply_precision_s(t_spec_info *lst)
+int		apply_precision_s(t_spec_info *lst)
 {
 	int		i;
 	char	*save;
@@ -55,7 +59,7 @@ static int		apply_precision_s(t_spec_info *lst)
 	return (0);
 }
 
-static void		apply_minus_s(t_spec_info *lst)
+void		apply_minus_s(t_spec_info *lst)
 {
 	int	i;
 	int	j;
@@ -71,7 +75,7 @@ static void		apply_minus_s(t_spec_info *lst)
 	return ;
 }
 
-static void		apply_zero_s(t_spec_info *lst)
+void		apply_zero_s(t_spec_info *lst)
 {
 	int	i;
 
@@ -85,7 +89,8 @@ static void		apply_zero_s(t_spec_info *lst)
 
 int				take_arg_s(t_spec_info *lst, va_list factor)
 {
-	lst->arg = va_arg(factor, char*);
+	if ((lst->arg = ft_prf_strjoin(va_arg(factor, char*), NULL)) == NULL)
+		return (-1);
 	lst->arg_len = (int)ft_prf_strlen(lst->arg);
 	lst->all_len = lst->arg_len;
 	if (apply_precision_s(lst) == -1)

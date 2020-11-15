@@ -31,9 +31,11 @@ SRC = $(SRCDIR)main.c\
 	  $(FORTEST)basic_test_arg_c.c\
 	  $(FORTEST)basic_test_arg_s.c\
 	  $(FORTEST)print_arg_lst.c\
-	  $(FTSTDLIBDIR)ft_atoi.c\
-	  $(FTSTRINGDIR)ft_memcmp.c\
-	  $(FTSTRINGDIR)ft_strlen.c\
+	  $(FTSTDLIBDIR)ft_prf_atoi.c\
+	  $(FTSTDLIBDIR)ft_prf_uitoa_base.c\
+	  $(FTSTRINGDIR)ft_prf_memcmp.c\
+	  $(FTSTRINGDIR)ft_prf_strlen.c\
+	  $(FTSTRINGDIR)ft_prf_strjoin.c\
 	  $(TAKESPECLSTDIR)take_spec_lst.c\
 	  $(SPECLSTSDIR)spec_lst_create.c\
 	  $(SPECLSTSDIR)spec_lst_add_back.c\
@@ -43,7 +45,8 @@ SRC = $(SRCDIR)main.c\
 	  $(CHECKVALIDSPECLST)check_valid_spec_lst.c\
 	  $(TAKEARGS)take_args.c\
 	  $(TAKEARGS)take_arg_c.c\
-	  $(TAKEARGS)take_arg_s.c
+	  $(TAKEARGS)take_arg_s.c\
+	  $(TAKEARGS)take_arg_p.c
 
 OBJ = $(SRC:.c=.o)
 

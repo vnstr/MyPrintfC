@@ -6,19 +6,18 @@
 /*   By: gdrive <gdrive@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 14:42:54 by gdrive            #+#    #+#             */
-/*   Updated: 2020/11/15 00:43:06 by gdrive           ###   ########.fr       */
+/*   Updated: 2020/11/15 14:28:25 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "ft_printf.h"
 
-/**
- * The function 'take_precision' puts
- * precision in lst from string or argument.
- * 
- * If finds minus, puts minus in lst.
- **/
+/*
+**	The function 'take_precision' puts
+**	precision in lst from string or argument.
+**	If finds minus, puts minus in lst.
+*/
 
 static char		*take_precision(char *s, t_spec_info *lst, va_list factor)
 {
@@ -39,11 +38,10 @@ static char		*take_precision(char *s, t_spec_info *lst, va_list factor)
 	return (s);
 }
 
-/**
- * The function 'take_width' puts
- * width in lst from string or argument.
- **/
-
+/*
+**	The function 'take_width' puts
+**	width in lst from string or argument.
+*/
 
 static char		*take_width(char *s, t_spec_info *lst, va_list factor)
 {
@@ -51,10 +49,10 @@ static char		*take_width(char *s, t_spec_info *lst, va_list factor)
 	{
 		lst->flags.width = va_arg(factor, int);
 		if (lst->flags.width < 0)
-			{
-				lst->flags.minus = '-';
-				lst->flags.width *= -1;
-			}
+		{
+			lst->flags.minus = '-';
+			lst->flags.width *= -1;
+		}
 		return (++s);
 	}
 	lst->flags.width = ft_prf_atoi(s);
@@ -63,23 +61,22 @@ static char		*take_width(char *s, t_spec_info *lst, va_list factor)
 	return (s);
 }
 
-/**
- * The function 'is_flag' returns
- * 1 if symbol is flag. And returns 0
- * if is not.
- **/
+/*
+**	The function 'is_flag' returns
+**	1 if symbol is flag. And returns 0
+**	if is not.
+*/
 
 int				is_flag(char c)
 {
 	return (c == '-' || c == '*' || c == '.' || (c >= '0' && c <= '9'));
 }
 
-/**
- * The function 'take_flags' puts all
- * finds flags in string to lst.
- * 
- * Flags: (0 - * .).
- **/
+/*
+** The function 'take_flags' puts all
+** finds flags in string to lst.
+** Flags: (0 - * .).
+*/
 
 void			take_flags(char *s, t_spec_info *lst, va_list factor)
 {
