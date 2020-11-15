@@ -6,13 +6,18 @@
 /*   By: gdrive <gdrive@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/14 12:17:28 by gdrive            #+#    #+#             */
-/*   Updated: 2020/11/15 19:19:29 by gdrive           ###   ########.fr       */
+/*   Updated: 2020/11/16 02:23:07 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdio.h>
 #include "ft_printf.h"
+
+/*
+**	The function 'apply_width_s' applies
+**	flag 'width' if needed.
+*/
 
 int		apply_width_s(t_spec_info *lst)
 {
@@ -40,6 +45,14 @@ int		apply_width_s(t_spec_info *lst)
 	return (0);
 }
 
+/*
+**	The function 'apply_precision_s' applies
+**	flag 'precision' if needed.
+**
+**	P.s. Precision just cuts string,
+**	if precision < strlen.
+*/
+
 int		apply_precision_s(t_spec_info *lst)
 {
 	int		i;
@@ -58,6 +71,11 @@ int		apply_precision_s(t_spec_info *lst)
 	lst->all_len = lst->arg_len;
 	return (0);
 }
+
+/*
+**	The function 'apply_minus_s' applies
+**	flag 'minus' if needed.
+*/
 
 void		apply_minus_s(t_spec_info *lst)
 {
@@ -86,6 +104,12 @@ void		apply_zero_s(t_spec_info *lst)
 		lst->arg[i++] = '0';
 	return ;
 }
+
+/*
+**	The function 'take_arg_s' puts
+**	char* argument to lst->arg with
+**  applying all needs flags.
+*/
 
 int				take_arg_s(t_spec_info *lst, va_list factor)
 {

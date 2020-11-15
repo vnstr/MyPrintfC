@@ -6,7 +6,7 @@
 /*   By: gdrive <gdrive@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 17:30:12 by gdrive            #+#    #+#             */
-/*   Updated: 2020/11/15 00:26:17 by gdrive           ###   ########.fr       */
+/*   Updated: 2020/11/16 02:14:34 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,18 @@
 #include <stdio.h>
 #include "ft_printf.h"
 
+/*
+**	The function 'apply_width_c' applies
+**	flag 'width' if needed. Else creates
+**	2 bytes string with ' ' and '\0'.
+*/
+
 static int		apply_width_c(t_spec_info *lst)
 {
 	int	i;
 	
-	lst->all_len = lst->flags.width;
-	if (lst->all_len == 0)
-		lst->all_len = 1;
+	if (lst->all_len < lst->flags.width)
+		lst->all_len = lst->flags.width;
 	if ((lst->arg = (char*)malloc(sizeof(char) * (lst->all_len + 1))) == NULL)
 		return (-1);
 	(lst->arg)[lst->all_len] = '\0';
@@ -29,6 +34,13 @@ static int		apply_width_c(t_spec_info *lst)
 		(lst->arg)[i] = ' ';
 	return (0);
 }
+
+/*
+**	The function 'apply_arg_c' puts
+**	char argument to lst->arg with applying
+**	flag 'minus' or flag '0', after
+**	apllying flag width.
+*/
 
 static void		apply_arg_c(t_spec_info *lst, va_list factor)
 {
@@ -46,6 +58,12 @@ static void		apply_arg_c(t_spec_info *lst, va_list factor)
 	}
 	lst->arg[lst->all_len - 1] = va_arg(factor, int);
 }
+
+/*
+**	The function 'take_arg_c' puts
+**	char argument to lst->arg with
+**  applying all needs flags.
+*/
 
 int				take_arg_c(t_spec_info *lst, va_list factor)
 {

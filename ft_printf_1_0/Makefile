@@ -30,6 +30,7 @@ SRC = $(SRCDIR)main.c\
 	  $(FORTEST)print_spec_lst.c\
 	  $(FORTEST)basic_test_arg_c.c\
 	  $(FORTEST)basic_test_arg_s.c\
+	  $(FORTEST)basic_test_arg_p.c\
 	  $(FORTEST)print_arg_lst.c\
 	  $(FTSTDLIBDIR)ft_prf_atoi.c\
 	  $(FTSTDLIBDIR)ft_prf_uitoa_base.c\

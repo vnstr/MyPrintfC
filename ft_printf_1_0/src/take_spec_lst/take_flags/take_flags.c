@@ -6,7 +6,7 @@
 /*   By: gdrive <gdrive@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 14:42:54 by gdrive            #+#    #+#             */
-/*   Updated: 2020/11/15 14:28:25 by gdrive           ###   ########.fr       */
+/*   Updated: 2020/11/16 02:04:53 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 /*
 **	The function 'take_precision' puts
-**	precision in lst from string or argument.
-**	If finds minus, puts minus in lst.
+**	precision to lst->flags.precision
+**	from string or argument.
+**	If finds minus, puts minus to lst->flags.minus.
 */
 
 static char		*take_precision(char *s, t_spec_info *lst, va_list factor)
@@ -40,7 +41,8 @@ static char		*take_precision(char *s, t_spec_info *lst, va_list factor)
 
 /*
 **	The function 'take_width' puts
-**	width in lst from string or argument.
+**	width to lst->flags.width
+**	from string or argument.
 */
 
 static char		*take_width(char *s, t_spec_info *lst, va_list factor)
@@ -73,9 +75,9 @@ int				is_flag(char c)
 }
 
 /*
-** The function 'take_flags' puts all
-** finds flags in string to lst.
-** Flags: (0 - * .).
+**	The function 'take_flags' puts all
+**	finds flags in string to lst->flags.
+**	Flags: (0 - * .).
 */
 
 void			take_flags(char *s, t_spec_info *lst, va_list factor)

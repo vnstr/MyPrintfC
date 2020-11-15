@@ -6,7 +6,7 @@
 /*   By: gdrive <gdrive@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 14:40:00 by gdrive            #+#    #+#             */
-/*   Updated: 2020/11/15 19:18:00 by gdrive           ###   ########.fr       */
+/*   Updated: 2020/11/16 01:25:55 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,6 @@ void		print_arg_lst(t_spec_info *begin_lst);
 
 void		basic_test_arg_c(void);
 void		basic_test_arg_s(void);
+void		basic_test_arg_p(void);
 
 #endif

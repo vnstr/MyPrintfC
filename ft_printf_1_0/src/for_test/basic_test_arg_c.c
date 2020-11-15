@@ -6,7 +6,7 @@
 /*   By: gdrive <gdrive@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/14 22:52:04 by gdrive            #+#    #+#             */
-/*   Updated: 2020/11/15 00:52:15 by gdrive           ###   ########.fr       */
+/*   Updated: 2020/11/16 02:27:00 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ static void		basic_test_two_arg(void)
 {
 	size_t	test_count = 1;
 
-	printf("\n~~~~~~~~~~Basic Test Start~~~~~~~~~~\n");
+	printf("\n~~~~~~~Spec: %%c two argument~~~~~~~~\n");
+	printf("~~~~~~~~~~Basic Test Start~~~~~~~~~~\n");
 
 	// 01
 	printf("test: %zu\n", test_count++);
@@ -119,7 +120,8 @@ static void		basic_test_one_arg(void)
 {
 	size_t	test_count = 1;
 
-	printf("\n~~~~~~~~~~Basic Test Start~~~~~~~~~~\n");
+	printf("\n~~~~~~~Spec: %%c one argument~~~~~~~~\n");
+	printf("~~~~~~~~~~Basic Test Start~~~~~~~~~~\n");
 
 	// 01
 	printf("test: %zu\n", test_count++);
@@ -218,7 +220,7 @@ static void		basic_test_one_arg(void)
 
 void				basic_test_arg_c(void)
 {
-	// basic_test_one_arg();
-	basic_test_two_arg();
+	basic_test_one_arg();
+	// basic_test_two_arg();
 	return ;
 }
