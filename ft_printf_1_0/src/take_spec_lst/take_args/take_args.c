@@ -6,7 +6,7 @@
 /*   By: gdrive <gdrive@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 16:55:07 by gdrive            #+#    #+#             */
-/*   Updated: 2020/11/15 15:03:16 by gdrive           ###   ########.fr       */
+/*   Updated: 2020/11/16 20:14:00 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,26 @@ int			take_args(t_spec_info *lst, va_list factor)
 	if (lst->spec == 'p')
 	{
 		if ((take_arg_p(lst, factor)) == -1)
+			return (-1);
+	}	
+	if (lst->spec == 'd' || lst->spec == 'i')
+	{
+		if ((take_arg_d(lst, factor)) == -1)
+			return (-1);
+	}
+	if (lst->spec == 'u')
+	{
+		if ((take_arg_u(lst, factor)) == -1)
+			return (-1);
+	}
+	if (lst->spec == 'x')
+	{
+		if ((take_arg_x(lst, factor)) == -1)
+			return (-1);
+	}
+	if (lst->spec == 'X')
+	{
+		if ((take_arg_upx(lst, factor)) == -1)
 			return (-1);
 	}
 	return (0);

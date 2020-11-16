@@ -31,8 +31,14 @@ SRC = $(SRCDIR)main.c\
 	  $(FORTEST)basic_test_arg_c.c\
 	  $(FORTEST)basic_test_arg_s.c\
 	  $(FORTEST)basic_test_arg_p.c\
+	  $(FORTEST)basic_test_arg_d.c\
+	  $(FORTEST)basic_test_arg_u.c\
+	  $(FORTEST)basic_test_arg_x.c\
+	  $(FORTEST)basic_test_arg_upx.c\
 	  $(FORTEST)print_arg_lst.c\
 	  $(FTSTDLIBDIR)ft_prf_atoi.c\
+	  $(FTSTDLIBDIR)ft_prf_itoa.c\
+	  $(FTSTDLIBDIR)ft_prf_uitoa.c\
 	  $(FTSTDLIBDIR)ft_prf_uitoa_base.c\
 	  $(FTSTRINGDIR)ft_prf_memcmp.c\
 	  $(FTSTRINGDIR)ft_prf_strlen.c\
@@ -47,7 +53,11 @@ SRC = $(SRCDIR)main.c\
 	  $(TAKEARGS)take_args.c\
 	  $(TAKEARGS)take_arg_c.c\
 	  $(TAKEARGS)take_arg_s.c\
-	  $(TAKEARGS)take_arg_p.c
+	  $(TAKEARGS)take_arg_p.c\
+	  $(TAKEARGS)take_arg_d.c\
+	  $(TAKEARGS)take_arg_u.c\
+	  $(TAKEARGS)take_arg_x.c\
+	  $(TAKEARGS)take_arg_upx.c
 
 OBJ = $(SRC:.c=.o)
 

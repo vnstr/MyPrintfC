@@ -6,7 +6,7 @@
 /*   By: gdrive <gdrive@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 14:42:54 by gdrive            #+#    #+#             */
-/*   Updated: 2020/11/16 02:04:53 by gdrive           ###   ########.fr       */
+/*   Updated: 2020/11/16 16:26:04 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,6 @@ int				is_flag(char c)
 
 void			take_flags(char *s, t_spec_info *lst, va_list factor)
 {
-	if (*s == '%')
-		s++;
 	while (is_flag(*s))
 	{
 		if (*s == '-')

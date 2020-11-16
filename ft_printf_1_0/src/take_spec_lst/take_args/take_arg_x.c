@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   take_arg_x.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdrive <gdrive@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/09 14:36:33 by gdrive            #+#    #+#             */
-/*   Updated: 2020/11/16 20:11:40 by gdrive           ###   ########.fr       */
+/*   Created: 2020/11/16 16:30:47 by gdrive            #+#    #+#             */
+/*   Updated: 2020/11/16 20:07:14 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
-int	main(int argc, char **argv)
+int	take_arg_x(t_spec_info *lst, va_list factor)
 {
-	char	*ptr = "abc";
-
-	basic_test_arg_c();
-	basic_test_arg_s();
-	basic_test_arg_p();
-	basic_test_arg_d();
-	basic_test_arg_u();
-	basic_test_arg_x();
-	basic_test_arg_upx();
-
+	if ((lst->arg = ft_prf_uitoa_base(va_arg(factor, uint32_t), HEX)) == NULL)
+		return (-1);
+	lst->arg_len = ft_prf_strlen(lst->arg);
+	lst->all_len = lst->arg_len;
+	if (apply_precision_d(lst) == -1)
+		return (-1);
+	if (apply_width_s(lst) == -1)
+		return (-1);
+	if (lst->flags.minus == '-')
+		apply_minus_s(lst);
+	else if (lst->flags.zero == '0' && lst->flags.precision < 0)
+		apply_zero_s(lst);
 	return (0);
 }

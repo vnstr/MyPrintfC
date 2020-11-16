@@ -6,7 +6,7 @@
 /*   By: gdrive <gdrive@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 14:40:00 by gdrive            #+#    #+#             */
-/*   Updated: 2020/11/16 01:25:55 by gdrive           ###   ########.fr       */
+/*   Updated: 2020/11/16 20:14:49 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdarg.h>
 # include <stdint.h>
 # define HEX "0123456789abcdef"
+# define UHEX "0123456789ABCDEF"
 
 int			ft_printf(const char *s, ...);
 
@@ -40,6 +41,8 @@ typedef struct				s_spec_info
 
 int			ft_prf_memcmp(const void *s1, const void *s2, size_t n);
 int			ft_prf_atoi(const char *str);
+char		*ft_prf_itoa(int64_t n);
+char		*ft_prf_uitoa(uint32_t n);
 char		*ft_prf_uitoa_base(uint64_t nb, char *base);
 size_t		ft_prf_strlen(const char *s);
 char		*ft_prf_strjoin(char const *s1, char const *s2);
@@ -55,10 +58,14 @@ int			take_args(t_spec_info *lst, va_list factor);
 int			take_arg_c(t_spec_info *lst, va_list factor);
 int			take_arg_s(t_spec_info *lst, va_list factor);
 int			apply_width_s(t_spec_info *lst);
-int			apply_precision_s(t_spec_info *lst);
 void		apply_minus_s(t_spec_info *lst);
 void		apply_zero_s(t_spec_info *lst);
 int			take_arg_p(t_spec_info *lst, va_list factor);
+int			take_arg_d(t_spec_info *lst, va_list factor);
+int			apply_precision_d(t_spec_info *lst);
+int			take_arg_u(t_spec_info *lst, va_list factor);
+int			take_arg_x(t_spec_info *lst, va_list factor);
+int			take_arg_upx(t_spec_info *lst, va_list factor);
 
 
 
@@ -73,5 +80,9 @@ void		print_arg_lst(t_spec_info *begin_lst);
 void		basic_test_arg_c(void);
 void		basic_test_arg_s(void);
 void		basic_test_arg_p(void);
+void		basic_test_arg_d(void);
+void		basic_test_arg_u(void);
+void		basic_test_arg_x(void);
+void		basic_test_arg_upx(void);
 
 #endif

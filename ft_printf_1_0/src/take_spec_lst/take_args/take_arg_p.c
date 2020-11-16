@@ -6,7 +6,7 @@
 /*   By: gdrive <gdrive@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 15:03:03 by gdrive            #+#    #+#             */
-/*   Updated: 2020/11/16 02:16:50 by gdrive           ###   ########.fr       */
+/*   Updated: 2020/11/16 19:30:02 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int static apply_precision_p(t_spec_info *lst)
 	size_t	i;
 	size_t	j;
 
-	if (lst->flags.precision <= lst->arg_len)
+	if (lst->flags.precision <= lst->arg_len - 2)
 		return (0);
 	lst->all_len = lst->flags.precision + 2;
 	save = lst->arg;
@@ -44,11 +44,6 @@ int static apply_precision_p(t_spec_info *lst)
 	return (0);
 }
 
-/*
-**	The function 'apply_zero_p' applies
-**	flag 'zero' if needed.
-*/
-
 void static	apply_zero_p(t_spec_info *lst)
 {
 	int	i;
@@ -62,13 +57,7 @@ void static	apply_zero_p(t_spec_info *lst)
 	lst->arg[1] = 'x';
 }
 
-/*
-**	The function 'take_arg_p' puts
-**	pointer argument to lst->arg with
-**  applying all needs flags.
-*/
-
-int	take_arg_p(t_spec_info *lst, va_list factor)
+int			take_arg_p(t_spec_info *lst, va_list factor)
 {
 	if ((lst->arg = ft_prf_uitoa_base(va_arg(factor, uint64_t), HEX)) == NULL)
 		return (-1);
@@ -82,7 +71,7 @@ int	take_arg_p(t_spec_info *lst, va_list factor)
 		return (-1);
 	if (lst->flags.minus == '-')
 		apply_minus_s(lst);
-	else if (lst->flags.zero == '0')
+	else if (lst->flags.zero == '0' && lst->flags.precision < 0)
 		apply_zero_p(lst);
 	return (0);
 }

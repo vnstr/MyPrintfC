@@ -6,7 +6,7 @@
 /*   By: gdrive <gdrive@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/14 12:17:28 by gdrive            #+#    #+#             */
-/*   Updated: 2020/11/16 02:23:07 by gdrive           ###   ########.fr       */
+/*   Updated: 2020/11/16 18:34:11 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,26 @@
 #include <stdio.h>
 #include "ft_printf.h"
 
-/*
-**	The function 'apply_width_s' applies
-**	flag 'width' if needed.
-*/
+static int	apply_precision_s(t_spec_info *lst)
+{
+	int		i;
+	char	*save;
 
-int		apply_width_s(t_spec_info *lst)
+	if (lst->flags.precision < 0 || lst->flags.precision > lst->arg_len)
+		return (0);
+	save = lst->arg;
+	lst->arg_len = lst->flags.precision;
+	if ((lst->arg = (char*)malloc(sizeof(char) * (lst->arg_len + 1))) == NULL)
+		return (-1);
+	i = lst->arg_len;
+	lst->arg[i] = '\0';
+	while (i--)
+		lst->arg[i] = save[i];
+	lst->all_len = lst->arg_len;
+	return (0);
+}
+
+int			apply_width_s(t_spec_info *lst)
 {
 	char	*save;
 	int		i;
@@ -45,38 +59,6 @@ int		apply_width_s(t_spec_info *lst)
 	return (0);
 }
 
-/*
-**	The function 'apply_precision_s' applies
-**	flag 'precision' if needed.
-**
-**	P.s. Precision just cuts string,
-**	if precision < strlen.
-*/
-
-int		apply_precision_s(t_spec_info *lst)
-{
-	int		i;
-	char	*save;
-
-	if (lst->flags.precision < 0 || lst->flags.precision > lst->arg_len)
-		return (0);
-	save = lst->arg;
-	lst->arg_len = lst->flags.precision;
-	if ((lst->arg = (char*)malloc(sizeof(char) * (lst->arg_len + 1))) == NULL)
-		return (-1);
-	i = lst->arg_len;
-	lst->arg[i] = '\0';
-	while (i--)
-		lst->arg[i] = save[i];
-	lst->all_len = lst->arg_len;
-	return (0);
-}
-
-/*
-**	The function 'apply_minus_s' applies
-**	flag 'minus' if needed.
-*/
-
 void		apply_minus_s(t_spec_info *lst)
 {
 	int	i;
@@ -100,18 +82,12 @@ void		apply_zero_s(t_spec_info *lst)
 	if (lst->all_len <= lst->arg_len)
 		return ;
 	i = 0;
-	while (lst->arg[i] != '\0' && i < (lst->all_len - lst->arg_len))
+	while (i < (lst->all_len - lst->arg_len))
 		lst->arg[i++] = '0';
 	return ;
 }
 
-/*
-**	The function 'take_arg_s' puts
-**	char* argument to lst->arg with
-**  applying all needs flags.
-*/
-
-int				take_arg_s(t_spec_info *lst, va_list factor)
+int			take_arg_s(t_spec_info *lst, va_list factor)
 {
 	if ((lst->arg = ft_prf_strjoin(va_arg(factor, char*), NULL)) == NULL)
 		return (-1);

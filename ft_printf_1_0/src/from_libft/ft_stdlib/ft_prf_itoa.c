@@ -1,53 +1,63 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_prf_uitoa_base.c                                :+:      :+:    :+:   */
+/*   ft_prf_itoa.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdrive <gdrive@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/15 15:16:52 by gdrive            #+#    #+#             */
-/*   Updated: 2020/11/16 15:31:06 by gdrive           ###   ########.fr       */
+/*   Created: 2020/11/16 11:27:02 by gdrive            #+#    #+#             */
+/*   Updated: 2020/11/16 14:46:38 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "ft_printf.h"
 
-static size_t	take_nb_len(long long nb, size_t len_base)
+static size_t	ft_itoa_lennb(long n)
 {
 	size_t	len;
 
-	if (len_base == 0)
-		return (0);
-	if (nb == 0)
-		return (1);
-	len = 0;
-	while (nb != 0)
+	len = 1;
+	while (n / 10 != 0)
 	{
-			nb /= len_base;
-			len++;
-
+		len++;
+		n /= 10;
 	}
 	return (len);
 }
 
-char			*ft_prf_uitoa_base(uint64_t nb, char *base)
+static char		*put_minus_nb(char *res, int64_t n, size_t nb_len)
 {
-	char	*res;
-	size_t	nb_len;
-	size_t	base_len;
+	res[0] = '-';
+	while (nb_len-- > 1)
+	{
+		res[nb_len] = n % 10 + 48;
+		n /= 10;
+	}
+	return (res);
+}
 
-	if (base == NULL)
-		return (NULL);
-	base_len = ft_prf_strlen(base);
-	nb_len = take_nb_len(nb, base_len);
+char			*ft_prf_itoa(int64_t n)
+{
+	char		*res;
+	char		sign;
+	size_t		nb_len;
+
+	if (n == INT64_MIN)
+		return (ft_prf_strjoin("-9223372036854775808", NULL));
+	sign = 0;
+	if (n < 0)
+		sign = 1;
+	nb_len = ft_itoa_lennb(n) + sign;
 	if ((res = (char*)malloc(sizeof(char) * (nb_len + 1))) == NULL)
 		return (NULL);
 	res[nb_len] = '\0';
-	while (nb_len--)
+	if (n < 0)
+		return (put_minus_nb(res, -n, nb_len));
+	while (nb_len-- != 0)
 	{
-		res[nb_len] = base[nb % base_len];
-		nb /= base_len;
+		res[nb_len] = n % 10 + 48;
+		n /= 10;
 	}
 	return (res);
 }

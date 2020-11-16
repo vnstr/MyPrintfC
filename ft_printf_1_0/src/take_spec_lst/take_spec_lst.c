@@ -6,7 +6,7 @@
 /*   By: gdrive <gdrive@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 18:06:08 by gdrive            #+#    #+#             */
-/*   Updated: 2020/11/16 02:29:28 by gdrive           ###   ########.fr       */
+/*   Updated: 2020/11/16 19:33:41 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ t_spec_info	*take_spec_lst(const char *s, va_list factor)
 		{
 			if ((current_lst = spec_lst_add_back(&begin_lst, (char*)s)) == NULL)
 				return (spec_lst_clear(&begin_lst));
-			take_flags((char*)s, current_lst, factor);
+			take_flags((char*)(s + 1), current_lst, factor);
 			s =take_spec((char*)s, current_lst);
 			if ((take_args(current_lst, factor)) == -1)
 				return (spec_lst_clear(&begin_lst));
@@ -83,7 +83,8 @@ t_spec_info	*take_spec_lst(const char *s, va_list factor)
 	}
 	// if ((check_valid_spec_lst(begin_lst)) == -1)
 	// 			return (spec_lst_clear(&begin_lst));
-	// print_spec_lst(begin_lst);
  	print_arg_lst(begin_lst);
+	// printf("\n");
+	// print_spec_lst(begin_lst);
 	return (NULL);
 }
