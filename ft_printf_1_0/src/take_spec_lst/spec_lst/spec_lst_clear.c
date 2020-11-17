@@ -6,13 +6,17 @@
 /*   By: gdrive <gdrive@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 13:16:03 by gdrive            #+#    #+#             */
-/*   Updated: 2020/11/13 20:03:34 by gdrive           ###   ########.fr       */
+/*   Updated: 2020/11/17 16:33:35 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_spec_info *spec_lst_clear(t_spec_info **begin_lst)
+/*
+**	Function removes list.
+*/
+
+t_spec_info	*spec_lst_clear(t_spec_info **begin_lst)
 {
 	t_spec_info	*tmp;
 

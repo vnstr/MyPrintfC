@@ -6,13 +6,19 @@
 /*   By: gdrive <gdrive@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 15:06:51 by gdrive            #+#    #+#             */
-/*   Updated: 2020/11/15 00:16:38 by gdrive           ###   ########.fr       */
+/*   Updated: 2020/11/17 16:31:22 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <unistd.h>
 #include "ft_printf.h"
+
+/*
+**	Function creates element of list, wich is described in "ft_printf.h",
+**	and setup 0, '\0' or NULL for all properties.
+**	Then adds it to the end of the list.
+*/
 
 t_spec_info	*spec_lst_add_back(t_spec_info **begin_lst, char *spec_position)
 {

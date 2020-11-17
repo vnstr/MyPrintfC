@@ -6,7 +6,7 @@
 /*   By: gdrive <gdrive@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 14:39:20 by gdrive            #+#    #+#             */
-/*   Updated: 2020/11/16 19:55:47 by gdrive           ###   ########.fr       */
+/*   Updated: 2020/11/17 21:08:00 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	take_arg_u(t_spec_info *lst, va_list factor)
 {
 	if ((lst->arg = ft_prf_uitoa(va_arg(factor, uint32_t))) == NULL)
 		return (-1);
+	if (lst->arg[0] == '0' && lst->flags.precision == 0)
+		lst->arg[0] = '\0';
 	lst->arg_len = ft_prf_strlen(lst->arg);
 	lst->all_len = lst->arg_len;
 	if (apply_precision_d(lst) == -1)

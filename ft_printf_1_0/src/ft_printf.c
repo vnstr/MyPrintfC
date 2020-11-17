@@ -3,33 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdrive <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: gdrive <gdrive@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 14:35:56 by gdrive            #+#    #+#             */
-/*   Updated: 2020/11/11 17:40:52 by gdrive           ###   ########.fr       */
+/*   Updated: 2020/11/17 20:47:37 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
+#include <stdio.h>
 #include "ft_printf.h"
 
 int					ft_printf(const char *s, ...)
 {
-	t_spec_info	*spec_lst;
-	va_list		arg_p;
-	// Парсинг строки
+	t_result_str	res_s;
+	t_spec_info		*spec_lst;
+	va_list			arg_p;
 
 	va_start(arg_p, s);
 	spec_lst = take_spec_lst(s, arg_p);
 	va_end(arg_p);
-
-	///////////////////////////////////
-
-	//Работа с аргументами
-	/*
-	va_list	arg_p;
-	va_arg(arg_p,double);
-	va_start(arg_p, s);
-	*/////////////////////
-
-	return (0);
+	if ((take_res_s(s, &res_s, spec_lst)) == -1)
+	{
+		spec_lst_clear(&spec_lst);
+		return (-1);
+	}
+	write(1, res_s.str, res_s.str_len);
+	spec_lst_clear(&spec_lst);
+	free(res_s.str);
+	return (res_s.str_len);
 }

@@ -6,7 +6,7 @@
 /*   By: gdrive <gdrive@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 15:21:37 by gdrive            #+#    #+#             */
-/*   Updated: 2020/11/14 18:07:28 by gdrive           ###   ########.fr       */
+/*   Updated: 2020/11/17 16:32:20 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,12 @@
 #include <unistd.h>
 #include "ft_printf.h"
 
-void	zero_flags_info(t_spec_info *lst)
+/*
+**	Function creates element of list, wich is described in "ft_printf.h",
+**	and setup 0, '\0' or NULL for all properties.
+*/
+
+void		zero_flags_info(t_spec_info *lst)
 {
 	lst->flags.minus = '\0';
 	lst->flags.zero = '\0';

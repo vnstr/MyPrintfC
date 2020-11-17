@@ -6,7 +6,7 @@
 /*   By: gdrive <gdrive@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 15:03:03 by gdrive            #+#    #+#             */
-/*   Updated: 2020/11/16 19:30:02 by gdrive           ###   ########.fr       */
+/*   Updated: 2020/11/17 21:06:21 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 int static apply_precision_p(t_spec_info *lst)
 {
 	char	*save;
-	size_t	i;
-	size_t	j;
+	int		i;
+	int		j;
 
 	if (lst->flags.precision <= lst->arg_len - 2)
 		return (0);
@@ -57,12 +57,35 @@ void static	apply_zero_p(t_spec_info *lst)
 	lst->arg[1] = 'x';
 }
 
+char		*take_null_s(char *arg)
+{
+	char	*save;
+	char	*res;
+
+	save = arg;
+	if ((res = (char*)malloc(sizeof(char) * 7)) == NULL)
+	{
+		free(save);
+		return (NULL);
+	}
+	res[0] = '(';
+	res[1] = 'n';
+	res[2] = 'u';
+	res[3] = 'l';
+	res[4] = 'l';
+	res[5] = ')';
+	res[6] = '\0';
+	return (res);
+}
+
 int			take_arg_p(t_spec_info *lst, va_list factor)
 {
 	if ((lst->arg = ft_prf_uitoa_base(va_arg(factor, uint64_t), HEX)) == NULL)
 		return (-1);
 	if ((lst->arg = ft_prf_strjoin("0x", lst->arg)) == NULL)
 		return (-1);
+	if (lst->arg[2] == '0' && lst->flags.precision == 0)
+		lst->arg[2] = '\0';
 	lst->arg_len = ft_prf_strlen(lst->arg);
 	lst->all_len = lst->arg_len;
 	if (apply_precision_p(lst) == -1)
@@ -71,7 +94,7 @@ int			take_arg_p(t_spec_info *lst, va_list factor)
 		return (-1);
 	if (lst->flags.minus == '-')
 		apply_minus_s(lst);
-	else if (lst->flags.zero == '0' && lst->flags.precision < 0)
+	if (lst->flags.zero == '0' && lst->flags.precision < 0)
 		apply_zero_p(lst);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: gdrive <gdrive@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 11:21:01 by gdrive            #+#    #+#             */
-/*   Updated: 2020/11/16 19:18:23 by gdrive           ###   ########.fr       */
+/*   Updated: 2020/11/17 21:04:16 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,13 @@
 **	flag 'precision' if needed.
 */
 
-
 int		apply_precision_minus_d(t_spec_info *lst)
 {
 	char	*save;
-	size_t	i;
-	size_t	j;
+	int		i;
+	int		j;
 
-	if (lst->flags.precision <= lst->arg_len)
+	if (lst->flags.precision < lst->arg_len)
 		return (0);
 	lst->arg_len--;
 	save = lst->arg;
@@ -51,8 +50,8 @@ int		apply_precision_minus_d(t_spec_info *lst)
 int		apply_precision_d(t_spec_info *lst)
 {
 	char	*save;
-	size_t	i;
-	size_t	j;
+	int		i;
+	int		j;
 
 	if (lst->arg[0] == '-')
 		return (apply_precision_minus_d(lst));
@@ -76,10 +75,36 @@ int		apply_precision_d(t_spec_info *lst)
 	return (0);
 }
 
+void	apply_zero_d(t_spec_info *lst)
+{
+	int	i;
+	int	sign;
+
+	if (lst->all_len <= lst->arg_len)
+		return ;
+	sign = 1;
+	if (lst->arg[lst->all_len - lst->arg_len] == '-')
+		sign = -1;
+	if (sign > 0)
+	{
+		i = 0;
+		while (i < (lst->all_len - lst->arg_len))
+			lst->arg[i++] = '0';
+		return ;
+	}
+	i = 1;
+	while (i < (lst->all_len - lst->arg_len + 1))
+		lst->arg[i++] = '0';
+	lst->arg[0] = '-';
+	return ;
+}
+
 int		take_arg_d(t_spec_info *lst, va_list factor)
 {
 	if ((lst->arg = ft_prf_itoa(va_arg(factor, int))) == NULL)
 		return (-1);
+	if (lst->arg[0] == '0' && lst->flags.precision == 0)
+		lst->arg[0] = '\0';
 	lst->arg_len = ft_prf_strlen(lst->arg);
 	lst->all_len = lst->arg_len;
 	if (apply_precision_d(lst) == -1)
@@ -89,6 +114,6 @@ int		take_arg_d(t_spec_info *lst, va_list factor)
 	if (lst->flags.minus == '-')
 		apply_minus_s(lst);
 	else if (lst->flags.zero == '0' && lst->flags.precision < 0)
-		apply_zero_s(lst);
+		apply_zero_d(lst);
 	return (0);
 }

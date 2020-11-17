@@ -6,7 +6,7 @@
 /*   By: gdrive <gdrive@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 14:40:00 by gdrive            #+#    #+#             */
-/*   Updated: 2020/11/16 20:14:49 by gdrive           ###   ########.fr       */
+/*   Updated: 2020/11/17 21:06:49 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,12 @@ typedef struct				s_spec_info
 	struct s_spec_info		*next;
 }							t_spec_info;
 
+typedef struct				s_result_str
+{
+	char					*str;
+	size_t					str_len;
+}							t_result_str;
+
 int			ft_prf_memcmp(const void *s1, const void *s2, size_t n);
 int			ft_prf_atoi(const char *str);
 char		*ft_prf_itoa(int64_t n);
@@ -55,8 +61,10 @@ void		take_flags(char *s, t_spec_info *lst, va_list factor);
 int			is_flag(char c);
 char		*take_spec(char *s, t_spec_info *lst);
 int			take_args(t_spec_info *lst, va_list factor);
-int			take_arg_c(t_spec_info *lst, va_list factor);
+int			is_spec(char c);
+int			take_arg_c(t_spec_info *lst, va_list factor, char c);
 int			take_arg_s(t_spec_info *lst, va_list factor);
+char		*take_null_s(char *arg);
 int			apply_width_s(t_spec_info *lst);
 void		apply_minus_s(t_spec_info *lst);
 void		apply_zero_s(t_spec_info *lst);
@@ -66,6 +74,7 @@ int			apply_precision_d(t_spec_info *lst);
 int			take_arg_u(t_spec_info *lst, va_list factor);
 int			take_arg_x(t_spec_info *lst, va_list factor);
 int			take_arg_upx(t_spec_info *lst, va_list factor);
+int			take_res_s(const char *s,  t_result_str *res_s, t_spec_info *lst);
 
 
 

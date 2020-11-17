@@ -6,7 +6,7 @@
 /*   By: gdrive <gdrive@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/14 12:17:28 by gdrive            #+#    #+#             */
-/*   Updated: 2020/11/16 18:34:11 by gdrive           ###   ########.fr       */
+/*   Updated: 2020/11/17 21:05:40 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ int			apply_width_s(t_spec_info *lst)
 	i = lst->all_len;
 	j = lst->arg_len;
 	while (j >= 0)
-		lst->arg[i--] = save[j--]; 
+		lst->arg[i--] = save[j--];
 	while (i >= 0)
-		lst->arg[i--] = ' '; 
+		lst->arg[i--] = ' ';
 	free(save);
 	return (0);
 }
@@ -89,8 +89,16 @@ void		apply_zero_s(t_spec_info *lst)
 
 int			take_arg_s(t_spec_info *lst, va_list factor)
 {
-	if ((lst->arg = ft_prf_strjoin(va_arg(factor, char*), NULL)) == NULL)
-		return (-1);
+	if ((lst->arg = va_arg(factor, char*)) == NULL)
+	{
+		if ((lst->arg = take_null_s(lst->arg)) == NULL)
+			return (-1);
+	}
+	else
+	{
+		if ((lst->arg = ft_prf_strjoin(lst->arg, NULL)) == NULL)
+			return (-1);
+	}
 	lst->arg_len = (int)ft_prf_strlen(lst->arg);
 	lst->all_len = lst->arg_len;
 	if (apply_precision_s(lst) == -1)

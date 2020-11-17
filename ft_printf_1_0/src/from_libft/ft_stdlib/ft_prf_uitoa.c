@@ -6,7 +6,7 @@
 /*   By: gdrive <gdrive@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 14:45:11 by gdrive            #+#    #+#             */
-/*   Updated: 2020/11/16 16:19:53 by gdrive           ###   ########.fr       */
+/*   Updated: 2020/11/17 13:14:58 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static size_t	ft_uitoa_lennb(uint32_t n)
 char			*ft_prf_uitoa(uint32_t n)
 {
 	char		*res;
-	char		sign;
 	size_t		nb_len;
 
 	nb_len = ft_uitoa_lennb(n);

@@ -1,4 +1,4 @@
-NAME = ft_printf
+NAME = libftprintf.a
 
 SRCDIR = src/
 
@@ -18,23 +18,16 @@ TAKEFLAGSDIR = $(TAKESPECLSTDIR)take_flags/
 
 TAKESPECDIR = $(TAKESPECLSTDIR)take_spec/
 
-CHECKERROR = $(SRCDIR)check_errors/
+#CHECKERROR = $(SRCDIR)check_errors/
 
-CHECKVALIDSPECLST = $(CHECKERROR)check_valid_spec_lst/
+#CHECKVALIDSPECLST = $(CHECKERROR)check_valid_spec_lst/
 
 TAKEARGS = $(TAKESPECLSTDIR)take_args/
 
+TAKERESULTSTRDIR = $(SRCDIR)take_result_str/
 
-SRC = $(SRCDIR)main.c\
-	  $(SRCDIR)ft_printf.c\
+SRC = $(SRCDIR)ft_printf.c\
 	  $(FORTEST)print_spec_lst.c\
-	  $(FORTEST)basic_test_arg_c.c\
-	  $(FORTEST)basic_test_arg_s.c\
-	  $(FORTEST)basic_test_arg_p.c\
-	  $(FORTEST)basic_test_arg_d.c\
-	  $(FORTEST)basic_test_arg_u.c\
-	  $(FORTEST)basic_test_arg_x.c\
-	  $(FORTEST)basic_test_arg_upx.c\
 	  $(FORTEST)print_arg_lst.c\
 	  $(FTSTDLIBDIR)ft_prf_atoi.c\
 	  $(FTSTDLIBDIR)ft_prf_itoa.c\
@@ -49,7 +42,6 @@ SRC = $(SRCDIR)main.c\
 	  $(SPECLSTSDIR)spec_lst_clear.c\
 	  $(TAKEFLAGSDIR)take_flags.c\
 	  $(TAKESPECDIR)take_spec.c\
-	  $(CHECKVALIDSPECLST)check_valid_spec_lst.c\
 	  $(TAKEARGS)take_args.c\
 	  $(TAKEARGS)take_arg_c.c\
 	  $(TAKEARGS)take_arg_s.c\
@@ -57,7 +49,9 @@ SRC = $(SRCDIR)main.c\
 	  $(TAKEARGS)take_arg_d.c\
 	  $(TAKEARGS)take_arg_u.c\
 	  $(TAKEARGS)take_arg_x.c\
-	  $(TAKEARGS)take_arg_upx.c
+	  $(TAKEARGS)take_arg_upx.c\
+	  $(TAKERESULTSTRDIR)take_result_str.c\
+	  $(SRCDIR)main.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -76,11 +70,12 @@ LIBFLAGS = -L$(LIBDIR) -l$(LIB)
 INCLD = includes/
 
 .c.o:
-	$(CC) -I$(INCLD) -c $< -o $(<:.c=.o)
+	$(CC) $(CFLAGS) -I$(INCLD) -c $< -o $(<:.c=.o)
 
 $(NAME):	$(OBJ)
-	#make -C libft
-	$(CC) $(OBJ) -o $(NAME)
+	ar rc $(NAME) $(OBJ)
+	ranlib $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) -o prf.out
 
 all:	$(NAME) 
 

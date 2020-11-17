@@ -6,17 +6,11 @@
 /*   By: gdrive <gdrive@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 13:01:19 by gdrive            #+#    #+#             */
-/*   Updated: 2020/11/14 23:27:39 by gdrive           ###   ########.fr       */
+/*   Updated: 2020/11/17 12:30:40 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int			is_spec(char c)
-{
-	return (c == 'c' || c == 's' || c == 'p' || c == 'd'
-	|| c == 'i' || c == 'u' || c == 'x' || c == 'X' || c == '%');
-}
 
 int			check_valid_spec_lst(t_spec_info *begin_lst)
 {
