@@ -12,7 +12,7 @@ Describe:
 - Displays to console symbols like printf(stdio.h) (man printf).
 
 - Realise types: %c, %s, %p, %d, %i, %u, %x and %X
-- Realise flags: 0 - *(width) .(precision, work with *).
+- Realise flags: 0 - *(width) .(precision, works with *).
 
 Return values:
 
